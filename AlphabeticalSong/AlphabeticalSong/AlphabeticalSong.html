@@ -1,0 +1,29 @@
+﻿<html dir="rtl">
+<head>
+    <title>Alphabetical Song</title>
+    
+</head>
+<body>
+    <h1>
+        <a id="link" href="" target="_blank" style="display:none">קישור לשירונט</a>
+        <span id="wait">רק רגע...</span>
+    </h1>
+    <p id="lyrics"></p>
+    <script>
+        fetch('https://yo8y1bmyu1.execute-api.il-central-1.amazonaws.com/prod?artist=563&artist=686&artist=225&artist=223&artist=166')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                console.log(json);
+                linkElement = document.getElementById("link");
+                linkElement.setAttribute("href", json.Link);
+                linkElement.style.display = "inherit";
+                waitElement = document.getElementById("wait");
+                waitElement.style.display = "none";
+                lyricsElement = document.getElementById("lyrics");
+                lyricsElement.innerHTML = json.OrderedLyrics;
+            });
+    </script>
+</body>
+</html>
